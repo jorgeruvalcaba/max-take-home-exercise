@@ -117,7 +117,9 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async (context) => {
   const { id } = context.query
 
+  // @ts-ignore
   const { data: details } = await getArtistDetails(Number(id))
+  // @ts-ignore
   const { data: similarArtists } = await getSimilarArtists(Number(id))
 
   return { props: { details, similarArtists } }

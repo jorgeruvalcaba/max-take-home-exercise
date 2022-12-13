@@ -7,7 +7,7 @@ import { List } from '../../components/List'
 import { useSavedArtists } from '../../context/SavedArtist'
 
 export default function SavedList() {
-  const { savedArtists, addArtist, removeArtist } = useSavedArtists()
+  const { savedArtists } = useSavedArtists()
   return (
     <Layout showTitle={false} title="My List">
       <div className="flex flex-row justify-between">
