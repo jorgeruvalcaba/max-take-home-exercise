@@ -13,5 +13,5 @@ export type Artist = {
   id: number
   image: string
   name: string
-  popularity: 49
+  popularity: number
 }

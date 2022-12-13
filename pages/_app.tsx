@@ -1,7 +1,12 @@
 import type { AppProps } from 'next/app'
 
+import { SavedArtistsProvider } from '../context/SavedArtist'
 import '../styles/globals.css'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <SavedArtistsProvider>
+      <Component {...pageProps} />
+    </SavedArtistsProvider>
+  )
 }

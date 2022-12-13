@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Artist } from '../../../api'
+import { useSavedArtists } from '../../../context/SavedArtist'
 import { Button } from '../../Button'
 
 type ListItemProps = {
@@ -10,6 +11,13 @@ type ListItemProps = {
 }
 
 export const ListItem = ({ artist, genre }: ListItemProps) => {
+  const { savedArtists, addArtist, removeArtist } = useSavedArtists()
+  const isArtistSaved = savedArtists.some(
+    (savedArtists) => savedArtists.id === artist.id
+  )
+  const handleSaveArtist = () => addArtist(artist)
+  const handleRemoveArtist = () => removeArtist(artist.id)
+
   return (
     <div
       className="flex w-3/5 p-4 mb-14 rounded-lg border-2 border-white hover:shadow-lg hover:shadow-white"
@@ -38,7 +46,11 @@ export const ListItem = ({ artist, genre }: ListItemProps) => {
         </div>
 
         <div className="px-6 py-4 flex items-center">
-          <Button>Add</Button>
+          <Button
+            onClick={isArtistSaved ? handleRemoveArtist : handleSaveArtist}
+          >
+            {isArtistSaved ? 'Remove' : 'Add'}
+          </Button>
         </div>
       </div>
     </div>

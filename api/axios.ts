@@ -25,7 +25,7 @@ export const getGenres = async (
 
 export const getArtistByGenre = async (
   id: number = DEFAULT_ID
-): Promise<any | unknown> => {
+): Promise<Artist[] | unknown> => {
   if (id === DEFAULT_ID) return
 
   try {
@@ -39,4 +39,18 @@ export const getArtistByGenre = async (
   } catch (e: unknown) {
     return console.log(e)
   }
+}
+
+export const getArtistDetails = async (id: number): Promise<Artist[]> => {
+  const { data } = await api.get<any>(`/api/v1/music/artists/${id}`, {
+    params,
+  })
+  return data
+}
+
+export const getSimilarArtists = async (id: number): Promise<Artist[]> => {
+  const { data } = await api.get<any>(`/api/v1/music/artists/${id}/similar`, {
+    params,
+  })
+  return data
 }
